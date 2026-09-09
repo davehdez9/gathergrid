@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { activities } from "@/data/activities";
+import ActivityCard from "@/components/ActivityCard";
 
 export default function ActivitiesPage() {
   return (
@@ -17,29 +19,12 @@ export default function ActivitiesPage() {
       </p>
 
       <div className="mt-8 space-y-4">
-        <Link
-          href="/activities/1"
-          className="block rounded-lg border border-gray-200 bg-white p-5 hover:border-gray-400"
-        >
-          <h2 className="font-semibold text-gray-900">
-            Beginner Photography Walk
-          </h2>
-          <p className="mt-1 text-sm text-gray-600">
-            Practice photography with a local group.
-          </p>
-        </Link>
-
-        <Link
-          href="/activities/2"
-          className="block rounded-lg border border-gray-200 bg-white p-5 hover:border-gray-400"
-        >
-          <h2 className="font-semibold text-gray-900">
-            Intro to Woodworking
-          </h2>
-          <p className="mt-1 text-sm text-gray-600">
-            Learn basic woodworking skills in a beginner-friendly workshop.
-          </p>
-        </Link>
+        {activities.map((activity) => (
+          <ActivityCard
+            key={activity.id}
+            activity={activity}
+          />
+        ))}
       </div>
     </main>
   );
