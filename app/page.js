@@ -1,9 +1,21 @@
 import Link from "next/link";
-import { activities } from "@/data/activities";
 import ActivityCard from "@/components/ActivityCard";
+import connectDB from "@/config/database";
+import Activity from "@/models/Activity";
 
-export default function Home() {
-  const featuredActivities = activities.slice(0, 3);
+export default async function Home() {
+  await connectDB()
+
+  const databaseActivities = await Activity.find({})
+    .sort({ createdAt: -1 })
+    .limit(3)
+    .lean()
+
+  const featuredActivities = databaseActivities.map(({ _id, ...activity }) => ({
+    ...activity,
+    id: _id.toString()
+  }))
+
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-16">
