@@ -18,10 +18,15 @@ const ActivitySchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        owner: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
+        }
     },
     {
-        timestamps: true
-    }
+        timestamps: true,
+    },
 )
 
 const Activity = mongoose.models.Activity || mongoose.model("Activity", ActivitySchema)
