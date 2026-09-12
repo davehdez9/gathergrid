@@ -3,6 +3,7 @@ import connectDB from "@/config/database";
 import Activity from "@/models/Activity";
 import mongoose from "mongoose";
 import { notFound } from "next/navigation";
+import ActivityImages from "@/components/ActivityImages";
 
 export default async function ActivityPage({ params }) {
   const { id } = await params
@@ -48,6 +49,7 @@ export default async function ActivityPage({ params }) {
       <p className="mt-3 text-gray-600">
         {activity.description}
       </p>
+      <ActivityImages images={activity.images} />
     </main>
   );
 }
