@@ -56,13 +56,16 @@ export default function Navbar() {
                 )}
 
                 {session && profileImage && (
-                    <Image
-                        src={profileImage}
-                        alt={session.user.name || "Profile"}
-                        width={40}
-                        height={40}
-                        className="rounded-full"
-                    />
+                    <Link href="/profile">
+                        <Image
+                            src={profileImage}
+                            alt={session.user.name || "Profile"}
+                            width={40}
+                            height={40}
+                            className="rounded-full"
+                        />
+                    </Link>
+
                 )}
 
                 {session && (
@@ -131,6 +134,20 @@ export default function Navbar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     >
                         Add Activity
+                    </Link>
+                )}
+
+                {session && (
+                    <Link
+                        href="/profile"
+                        className={
+                        pathname === "/profile"
+                            ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                            : "rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                        }
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                       Profile
                     </Link>
                 )}
 
