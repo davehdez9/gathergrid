@@ -38,7 +38,18 @@ export default function Navbar() {
                     Home
                 </Link>
 
-                <Link href="/activities" className={pathname === "/activities" || (pathname.startsWith('/activities/') && pathname !== "/activities/add") ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" : "rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"}>
+                <Link
+                    href="/activities"
+                    className={
+                        pathname === "/activities" ||
+                    (
+                        pathname.startsWith('/activities/') &&
+                        pathname !== "/activities/add" &&
+                        pathname !== "/activities/saved"
+                    )
+                        ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                        : "rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                }>
                     Activities
                 </Link>
 
@@ -52,6 +63,19 @@ export default function Navbar() {
                         }
                     >
                         Add Activity
+                    </Link>
+                )}
+
+                {session && (
+                    <Link
+                        href='/activities/saved'
+                        className={
+                            pathname === "/activities/saved"
+                            ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                            : "rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                        }
+                    >
+                        Saved Activities
                     </Link>
                 )}
 
@@ -117,7 +141,16 @@ export default function Navbar() {
 
                 <Link
                     href="/activities"
-                    className={pathname === "/activities" || (pathname.startsWith('/activities/') && pathname !== "/activities/add") ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" : "rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"}
+                    className={
+                        pathname === "/activities" ||
+                    (
+                        pathname.startsWith('/activities/') &&
+                        pathname !== "/activities/add" &&
+                        pathname !== "/activities/saved"
+                    )
+                        ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                        : "rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                    }
                     onClick={() => setIsMobileMenuOpen(false)}
                 >
                     Activities
@@ -134,6 +167,20 @@ export default function Navbar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     >
                         Add Activity
+                    </Link>
+                )}
+
+                {session && (
+                    <Link
+                        href="/activities/saved"
+                        className={
+                            pathname === "/activities/saved"
+                            ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                            : "rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                        }
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        Saved Activities
                     </Link>
                 )}
 
