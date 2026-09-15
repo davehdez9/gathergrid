@@ -2,6 +2,7 @@ import Link from "next/link";
 import connectDB from "@/config/database";
 import Activity from "@/models/Activity";
 import ActivityCard from "@/components/ActivityCard";
+import ActivitySearchForm from "@/components/ActivitySearchForm"
 
 export default async function ActivitiesPage() {
   await connectDB()
@@ -27,6 +28,8 @@ export default async function ActivitiesPage() {
       <p className="mt-3 text-gray-600">
         Browse local workshops and hobby activities.
       </p>
+
+      <ActivitySearchForm />
 
       <div className="mt-8 space-y-4">
         {activities.map((activity) => (
