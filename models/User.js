@@ -13,6 +13,15 @@ const UserSchema = new mongoose.Schema(
         },
         image: {
             type: String,
+        },
+        bookmarks : {
+            type : [
+                {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'Activity'
+                }
+            ],
+            default: [],
         }
     },
     {

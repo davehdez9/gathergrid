@@ -4,6 +4,10 @@ import Activity from "@/models/Activity";
 import mongoose from "mongoose";
 import { notFound } from "next/navigation";
 import ActivityImages from "@/components/ActivityImages";
+import ActivityMap from "@/components/ActivityMap";
+import BookmarkButton from '@/components/BookmarkButton';
+import ShareButtons from "@/components/ShareButtons"
+
 
 export default async function ActivityPage({ params }) {
   const { id } = await params
@@ -46,10 +50,21 @@ export default async function ActivityPage({ params }) {
       <p className="mt-3 text-gray-600">
         {activity.location}
       </p>
+
       <p className="mt-3 text-gray-600">
         {activity.description}
       </p>
+
       <ActivityImages images={activity.images} />
+
+      <BookmarkButton activityId={activity.id} />
+
+      <ShareButtons
+        activityId={activity.id}
+        title={activity.title}
+      />
+
+      <ActivityMap location={activity.location}/>
     </main>
   );
 }
