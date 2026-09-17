@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react";
 import { useSession, getProviders, signIn, signOut } from "next-auth/react";
 import Image from "next/image"
+import UnreadMessageCount from "@/components/UnreadMessageCount"
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -90,6 +91,19 @@ export default function Navbar() {
                         />
                     </Link>
 
+                )}
+
+                {session && (
+                    <Link
+                        href="/messages"
+                        className={
+                            pathname === "/messages"
+                                ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                                : "rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                        }
+                    >
+                        Messages <UnreadMessageCount />
+                    </Link>
                 )}
 
                 {session && (
@@ -181,6 +195,20 @@ export default function Navbar() {
                         onClick={() => setIsMobileMenuOpen(false)}
                     >
                         Saved Activities
+                    </Link>
+                )}
+
+                {session && (
+                    <Link
+                        href="/messages"
+                        className={
+                            pathname === "/messages"
+                                ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                                : "rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                        }
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        Messages <UnreadMessageCount />
                     </Link>
                 )}
 
