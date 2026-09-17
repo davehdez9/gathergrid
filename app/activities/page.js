@@ -3,11 +3,24 @@ import connectDB from "@/config/database";
 import Activity from "@/models/Activity";
 import ActivityCard from "@/components/ActivityCard";
 import ActivitySearchForm from "@/components/ActivitySearchForm"
+import Pagination from "@/components/Pagination"
 
-export default async function ActivitiesPage() {
+export default async function ActivitiesPage({ searchParams }) {
   await connectDB()
 
-  const databaseActivities = await Activity.find({}).lean()
+  const params = await searchParams
+
+  const page = Number(params.page || 1)
+
+  const pageSize = 9
+
+  const skip = (page -1) * pageSize
+
+  const totalActivities = await Activity.countDocuments({})
+
+  const databaseActivities = await Activity.find({}).lean().skip(skip).limit(pageSize)
+
+  const showPagination = totalActivities > pageSize
 
   const activities = databaseActivities.map(({ _id, ...activity }) => ({
     ...activity,
@@ -39,6 +52,14 @@ export default async function ActivitiesPage() {
           />
         ))}
       </div>
+
+      {showPagination && (
+        <Pagination
+          page={page}
+          pageSize={pageSize}
+          totalItems={totalActivities}
+        />
+      )}
     </main>
   );
 }

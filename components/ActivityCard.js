@@ -6,13 +6,15 @@ export default function ActivityCard({ activity }) {
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-5">
         {hasImage && (
-            <Image
-                src={activity.images[0]}
-                alt={activity.title}
-                width={600}
-                height={400}
-                className="w-full h-48 object-cover rounded-lg"
-            />
+            <Link href={`/activities/${activity.id}`}>
+                <Image
+                    src={activity.images[0]}
+                    alt={activity.title}
+                    width={600}
+                    height={400}
+                    className="w-full h-48 object-cover rounded-lg"
+                />
+            </Link>
         )}
         <p className="text-sm font-medium text-gray-500">
             {activity.category}
