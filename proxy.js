@@ -5,5 +5,5 @@ export async function proxy(request) {
 }
 
 export const config = {
-    matcher: ["/activities/add"],
+    matcher: ["/activities/add", "/messages"],
 }

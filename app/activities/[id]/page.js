@@ -7,6 +7,7 @@ import ActivityImages from "@/components/ActivityImages";
 import ActivityMap from "@/components/ActivityMap";
 import BookmarkButton from '@/components/BookmarkButton';
 import ShareButtons from "@/components/ShareButtons"
+import ActivityContactForm from "@/components/ActivityContactForm"
 
 
 export default async function ActivityPage({ params }) {
@@ -63,6 +64,8 @@ export default async function ActivityPage({ params }) {
         activityId={activity.id}
         title={activity.title}
       />
+
+      <ActivityContactForm activityId={activity.id} />
 
       <ActivityMap location={activity.location}/>
     </main>
