@@ -6,7 +6,9 @@ import Activity from "@/models/Activity";
 export default async function Home() {
   await connectDB()
 
-  const databaseActivities = await Activity.find({})
+  const databaseActivities = await Activity.find({
+    isFeatured: true
+  })
     .sort({ createdAt: -1 })
     .limit(3)
     .lean()

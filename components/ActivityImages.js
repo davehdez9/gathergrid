@@ -1,39 +1,71 @@
-import Image from "next/image";
+'use client';
+
+import Image from 'next/image';
+import { Gallery, Item } from 'react-photoswipe-gallery';
 
 const ActivityImages = ({ images }) => {
-    if (!images || images.length === 0) {
-        return null
-    }
+  if (!images || images.length === 0) {
+    return null;
+  }
 
-    if (images.length === 1) {
-        return (
-            <div className="mb-6">
-                <Image
-                    src={images[0]}
-                    alt="Activity Image"
-                    width={1200}
-                    height={800}
-                    className="w-full h-96 object-cover rounded-lg"
-                />
-            </div>
-        )
-    }
+  if (images.length === 1) {
+    const imageUrl = images[0];
 
     return (
-        <div className="grid grid-cols-2 gap-4 mb-6">
-            {images.map((image, index) => (
-                <Image
-                    key={`${image}-${index}`}
-                    src={image}
-                    alt="Activity Image"
-                    width={800}
-                    height={600}
-                    className={`w-full h-64 object-cover rounded-lg ${images.length === 3 && index === 2 ? 'col-span-2' : ''}`}
-                />
-            ))
-            }
-        </div>
-    )
-}
+      <Gallery>
+        <Item
+          original={imageUrl}
+          thumbnail={imageUrl}
+          width="1200"
+          height="800"
+        >
+          {({ ref, open }) => (
+            <Image
+              ref={ref}
+              onClick={open}
+              src={imageUrl}
+              alt="Activity image"
+              width={1200}
+              height={800}
+              className="w-full h-auto object-cover rounded-lg cursor-pointer"
+            />
+          )}
+        </Item>
+      </Gallery>
+    );
+  }
 
-export default ActivityImages
+  return (
+    <Gallery>
+      <div className="grid grid-cols-2 gap-4">
+        {images.map((image, index) => (
+          <div
+            key={image}
+            className={index === 2 ? 'col-span-2' : ''}
+          >
+            <Item
+              original={image}
+              thumbnail={image}
+              width="1200"
+              height="800"
+            >
+              {({ ref, open }) => (
+                <Image
+                  ref={ref}
+                  onClick={open}
+                  src={image}
+                  alt={`Activity image ${index + 1}`}
+                  width={1200}
+                  height={800}
+                  className="w-full h-full object-cover rounded-lg cursor-pointer"
+                />
+              )}
+            </Item>
+          </div>
+        ))}
+      </div>
+    </Gallery>
+  );
+};
+
+export default ActivityImages;

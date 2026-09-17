@@ -26,6 +26,10 @@ const ActivitySchema = new mongoose.Schema(
         images: {
             type: [String],
             default: [],
+        },
+        isFeatured: {
+            type: Boolean,
+            default: false
         }
     },
     {
