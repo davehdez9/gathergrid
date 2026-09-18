@@ -3,24 +3,38 @@ import Link from "next/link"
 export default function Footer() {
     const currentYear = new Date().getFullYear()
 
-  return (
-    <footer className="border-t border-gray-200 bg-white">
-        <div className="mx-auto flex max-w-4xl flex-col gap-3 px-6 py-8 text-sm text-gray-600 sm:flex-row sm:items-center sm:justify-between">
-            <p className="font-semibold text-gray-900">
-                GatherGrid
-            </p>
-            <p>
-                A community directory for discovering local workshops and hobby activities.
-            </p>
+    return (
+        <footer className="mt-16 border-t border-gray-200 bg-white">
+            <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+                <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                    <div>
+                        <Link
+                            href="/"
+                            className="text-lg font-bold tracking-tight text-gray-900 transition hover:text-gray-600"
+                        >
+                            GatherGrid
+                        </Link>
 
-            <Link href="/activities" className="font-medium text-gray-600 hover:text-gray-900">
-                Browse Activities
-            </Link>
+                        <p className="mt-2 max-w-md text-sm leading-6 text-gray-600">
+                            A community directory for discovering local workshops,
+                            creative meetups, and hobby activities.
+                        </p>
+                    </div>
 
-            <p>
-                {currentYear} GatherGrid
-            </p>
-        </div>
-    </footer>
-  )
+                    <div className="flex flex-col gap-3 text-sm sm:items-end">
+                        <Link
+                            href="/activities"
+                            className="font-semibold text-gray-700 transition hover:text-gray-900"
+                        >
+                            Browse Activities
+                        </Link>
+
+                        <p className="text-gray-500">
+                            © {currentYear} GatherGrid
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    )
 }
